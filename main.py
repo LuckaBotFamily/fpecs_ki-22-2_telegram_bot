@@ -4,7 +4,7 @@ async def NAME(message: types.Message):
     print(message.from_user.full_name + ' || @' + message.from_user.username + ' || ' + message.text)
     await message.answer()
 """
-
+import schedule
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.types import InputFile
@@ -24,13 +24,13 @@ async def status(message: types.Message):
     status += "Uptime: " + str((datetime.now() - startTime))
     await bot.send_photo(chat_id=message.from_user.id, photo=InputFile('assets/timetable/1.jpg'))
 
-
+## Расписание на всю неделю
 @dp.message_handler(commands=['timetable'])
 async def timetable(message: types.Message):
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
     await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/timetable.png'))
 
-
+## Расписание на понедельник
 @dp.message_handler(commands=['monday'])
 async def monday(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
@@ -40,7 +40,7 @@ async def monday(message: types.Message):
     else:
         await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/mon_a.png'))
 
-
+## Расписание на вторник
 @dp.message_handler(commands=['tuesday'])
 async def tuesday(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
@@ -50,7 +50,7 @@ async def tuesday(message: types.Message):
     else:
         await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_a.png'))
 
-
+## Расписание на среду
 @dp.message_handler(commands=['wednesday'])
 async def wednesday(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
@@ -60,6 +60,7 @@ async def wednesday(message: types.Message):
     else:
         await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/wed_a.png'))
 
+## Расписание на четверг
 @dp.message_handler(commands=['thursday'])
 async def thursday(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
@@ -69,13 +70,13 @@ async def thursday(message: types.Message):
     else:
         await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/thu_a.png'))
 
-
+## Расписание на пятницу
 @dp.message_handler(commands=['friday'])
 async def friday(message: types.Message):
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
     await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/fri.png'))
 
-
+## Расписание на сегодня
 @dp.message_handler(commands=['today'])
 async def today(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
@@ -126,7 +127,7 @@ async def today(message: types.Message):
                 pass
 
 
-
+## Расписание на завтра
 @dp.message_handler(commands=['tomorrow'])
 async def today(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
