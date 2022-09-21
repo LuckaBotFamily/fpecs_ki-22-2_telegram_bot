@@ -76,5 +76,105 @@ async def friday(message: types.Message):
     await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/fri.png'))
 
 
+@dp.message_handler(commands=['today'])
+async def today(message: types.Message):
+    week = datetime.date(datetime.today()).strftime("%V")
+    print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
+    if int(week) % 2 == 0:
+        if datetime.weekday(datetime.today()) == 0:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/mon_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 1:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 2:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/wed_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 3:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/thu_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 4:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/fri.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 5:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+            pass
+        if datetime.weekday(datetime.today()) == 6:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+            pass
+    else:
+            if datetime.weekday(datetime.today()) == 0:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/mon_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 1:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 2:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/wed_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 3:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/thu_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 4:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/fri.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 5:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+                pass
+            if datetime.weekday(datetime.today()) == 6:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+                pass
+
+
+
+@dp.message_handler(commands=['tomorrow'])
+async def today(message: types.Message):
+    week = datetime.date(datetime.today()).strftime("%V")
+    print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
+    if int(week) % 2 == 0:
+        if datetime.weekday(datetime.today()) == 6:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/mon_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 0:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 1:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/wed_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 2:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/thu_b.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 3:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/fri.png'))
+            pass
+        if datetime.weekday(datetime.today()) == 4:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+            pass
+        if datetime.weekday(datetime.today()) == 5:
+            await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+            pass
+    else:
+            if datetime.weekday(datetime.today()) == 6:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/mon_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 0:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 1:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/wed_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 2:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/thu_a.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 3:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/fri.png'))
+                pass
+            if datetime.weekday(datetime.today()) == 4:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+                pass
+            if datetime.weekday(datetime.today()) == 5:
+                await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
+                pass
+
 if __name__ == '__main__':
     executor.start_polling(dp)
