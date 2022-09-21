@@ -4,7 +4,9 @@ async def NAME(message: types.Message):
     print(message.from_user.full_name + ' || @' + message.from_user.username + ' || ' + message.text)
     await message.answer()
 """
+import requests
 import schedule
+import time
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.types import InputFile
@@ -52,7 +54,7 @@ async def tuesday(message: types.Message):
 
 ## Расписание на среду
 @dp.message_handler(commands=['wednesday'])
-async def wednesday(message: types.Message):
+async def wednesday(chat_id, message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
     if int(week) % 2 == 0:
@@ -176,6 +178,58 @@ async def today(message: types.Message):
             if datetime.weekday(datetime.today()) == 5:
                 await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/'))
                 pass
+
+
+def newday():
+    week = datetime.date(datetime.today()).strftime("%V")
+    url = 'https://api.telegram.org/bot' + config.TOKEN + '/sendPhoto?chat_id=-1001709052184&parse_mode=HTML&photo='
+    if int(week) % 2 == 0:
+        if datetime.weekday(datetime.today()) == 0:
+            url += 'https://imgur.com/YZQEhuM'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 1:
+             url += 'https://imgur.com/fIJnGyQ'
+             requests.get(url)
+        if datetime.weekday(datetime.today()) == 2:
+            url += 'https://imgur.com/ksARzH5'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 3:
+             url += 'https://imgur.com/cn2xnos'
+             requests.get(url)
+        if datetime.weekday(datetime.today()) == 4:
+             url += 'https://imgur.com/UlOsUfJ'
+             requests.get(url)
+        if datetime.weekday(datetime.today()) == 5:
+             pass
+        if datetime.weekday(datetime.today()) == 6:
+             pass
+
+    else:
+        if datetime.weekday(datetime.today()) == 0:
+            url += 'https://imgur.com/Xap4gYK'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 1:
+            url += 'https://imgur.com/6RteikD'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 2:
+            url += 'https://imgur.com/M6tqFXD'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 3:
+            url += 'https://imgur.com/UuTqthK'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 4:
+            url += 'https://imgur.com/UlOsUfJ'
+            requests.get(url)
+        if datetime.weekday(datetime.today()) == 5:
+            pass
+        if datetime.weekday(datetime.today()) == 6:
+            pass
+
+schedule.every().day.at('07:08').do(newday)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
 if __name__ == '__main__':
     executor.start_polling(dp)
