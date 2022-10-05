@@ -253,6 +253,9 @@ async def notify(pars):
     for user in notifyUsers:
         if int(week) % 2 == 0:
             if datetime.weekday(datetime.today()) == 0:
+                if int(pars) == 2:
+                    await bot.send_message(chat_id=user,
+                                           text=f'Через 5 минут начнется пара {config.mon_b_2}')
                 if int(pars) == 3:
                     await bot.send_message(chat_id=user,
                                            text=f'Через 5 минут начнется пара {config.mon_b_3}')
@@ -297,14 +300,12 @@ async def notify(pars):
                     await bot.send_message(chat_id=user,
                                            text=f'Через 5 минут начнется пара {config.fri_2}')
                 if int(pars) == 3:
-                    pass
+                    await bot.send_message(chat_id=user,
+                                           text=f'Через 5 минут начнется пара {config.fri_3}')
                 if int(pars) == 4:
                     pass
         else:
             if datetime.weekday(datetime.today()) == 0:
-                if int(pars) == 3:
-                    await bot.send_message(chat_id=user,
-                                           text=f'Через 5 минут начнется пара {config.mon_a_3}')
                 if int(pars) == 4:
                     await bot.send_message(chat_id=user,
                                            text=f'Через 5 минут начнется пара {config.mon_4}')
@@ -349,6 +350,9 @@ async def notify(pars):
                 if int(pars) == 2:
                     await bot.send_message(chat_id=user,
                                            text=f'Через 5 минут начнется пара {config.fri_2}')
+                if int(pars) == 3:
+                    await bot.send_message(chat_id=user,
+                                           text=f'Через 5 минут начнется пара {config.fri_3}')
 
 
 @dp.message_handler(commands=['notify_on'])
@@ -362,12 +366,11 @@ async def notify_on(message: types.Message):
         await bot.send_message(message.chat.id, 'Уведомления включены')
 
 scheduler = AsyncIOScheduler()
-scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='7', minute='00')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args=('1'))
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args=('2'))
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='19', minute='47', args=('3'))
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args=('3'))
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args=('4'))
+scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='4', minute='00')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='04', minute='55', args=('1'))
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='06', minute='30', args=('2'))
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='08', minute='05', args=('3'))
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='40', args=('4'))
 scheduler.start()
 
 
