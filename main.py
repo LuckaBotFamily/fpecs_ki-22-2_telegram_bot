@@ -253,9 +253,6 @@ async def notify(pars):
     for user in notifyUsers:
         if int(week) % 2 == 0:
             if datetime.weekday(datetime.today()) == 0:
-                if int(pars) == 2:
-                    await bot.send_message(chat_id=user,
-                                           text=f'Через 5 минут начнется пара {config.mon_b_2}')
                 if int(pars) == 3:
                     await bot.send_message(chat_id=user,
                                            text=f'Через 5 минут начнется пара {config.mon_b_3}')
@@ -306,6 +303,9 @@ async def notify(pars):
                     pass
         else:
             if datetime.weekday(datetime.today()) == 0:
+                if int(pars) == 3:
+                    await bot.send_message(chat_id=user,
+                                           text=f'Через 5 минут начнется пара {config.mon_a_3}')
                 if int(pars) == 4:
                     await bot.send_message(chat_id=user,
                                            text=f'Через 5 минут начнется пара {config.mon_4}')
