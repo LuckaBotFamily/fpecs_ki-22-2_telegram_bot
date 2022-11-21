@@ -60,7 +60,7 @@ async def tuesday(message: types.Message):
     week = datetime.date(datetime.today()).strftime("%V")
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
     if int(week) % 2 == 0:
-        await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_b.png.png'))
+        await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_b.png'))
     else:
         await bot.send_photo(chat_id=message.chat.id, photo=InputFile('assets/timetable/tue_a.png'))
 
