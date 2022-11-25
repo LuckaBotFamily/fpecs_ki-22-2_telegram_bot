@@ -32,6 +32,9 @@ for line in notifyFile:
     notifyUsers.add(line.strip())
 notifyFile.close()
 
+inline_delete = InlineKeyboardMarkup().add(InlineKeyboardButton('❌ ', callback_data='delete'))
+
+
 @dp.message_handler(commands=['status'])
 async def status(message: types.Message):
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
@@ -54,31 +57,11 @@ async def timetable(message: types.Message):
     text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
     text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
     text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-    first = worksheet.acell('C3:F3').value
-    second = worksheet.acell('C5:F5').value
-    third = worksheet.acell('C7:F7').value
-    fourth = worksheet.acell('C9:F9').value
-    text += "    ◀ Понеділок ▶ 🔷  \n"
-    text += "════════════════\n"
-    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
-    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
-    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
-    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
     first = worksheet.acell('C14:F14').value
     second = worksheet.acell('C16:F16').value
     third = worksheet.acell('C18:F18').value
     fourth = worksheet.acell('C20:F20').value
     text += "    ◀ Вівторок ▶ 🔶  \n"
-    text += "════════════════\n"
-    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
-    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
-    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
-    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-    first = worksheet.acell('C13:F13').value
-    second = worksheet.acell('C15:F15').value
-    third = worksheet.acell('C17:F17').value
-    fourth = worksheet.acell('C19:F19').value
-    text += "    ◀ Вівторок ▶ 🔷  \n"
     text += "════════════════\n"
     text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
     text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
@@ -94,31 +77,11 @@ async def timetable(message: types.Message):
     text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
     text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
     text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-    first = worksheet.acell('C23:F23').value
-    second = worksheet.acell('C25:F25').value
-    third = worksheet.acell('C27:F27').value
-    fourth = worksheet.acell('C29:F29').value
-    text += "    ◀ Середа ▶ 🔷  \n"
-    text += "════════════════\n"
-    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
-    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
-    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
-    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
     first = worksheet.acell('C34:F34').value
     second = worksheet.acell('C36:F36').value
     third = worksheet.acell('C38:F38').value
     fourth = worksheet.acell('C40:F40').value
     text += "    ◀ Четверг ▶ 🔶  \n"
-    text += "════════════════\n"
-    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
-    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
-    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
-    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-    first = worksheet.acell('C33:F33').value
-    second = worksheet.acell('C35:F35').value
-    third = worksheet.acell('C37:F37').value
-    fourth = worksheet.acell('C39:F39').value
-    text += "    ◀ Четверг ▶ 🔷  \n"
     text += "════════════════\n"
     text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
     text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
@@ -134,6 +97,48 @@ async def timetable(message: types.Message):
     text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
     text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
     text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
+    first = worksheet.acell('C3:F3').value
+    second = worksheet.acell('C5:F5').value
+    third = worksheet.acell('C7:F7').value
+    fourth = worksheet.acell('C9:F9').value
+    text += "═══════════════════════\n"
+    text += "═══════════════════════\n"
+    text += "    ◀ Понеділок ▶ 🔷  \n"
+    text += "════════════════\n"
+    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
+    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
+    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
+    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
+    first = worksheet.acell('C13:F13').value
+    second = worksheet.acell('C15:F15').value
+    third = worksheet.acell('C17:F17').value
+    fourth = worksheet.acell('C19:F19').value
+    text += "    ◀ Вівторок ▶ 🔷  \n"
+    text += "════════════════\n"
+    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
+    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
+    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
+    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
+    first = worksheet.acell('C23:F23').value
+    second = worksheet.acell('C25:F25').value
+    third = worksheet.acell('C27:F27').value
+    fourth = worksheet.acell('C29:F29').value
+    text += "    ◀ Середа ▶ 🔷  \n"
+    text += "════════════════\n"
+    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
+    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
+    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
+    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
+    first = worksheet.acell('C33:F33').value
+    second = worksheet.acell('C35:F35').value
+    third = worksheet.acell('C37:F37').value
+    fourth = worksheet.acell('C39:F39').value
+    text += "    ◀ Четверг ▶ 🔷  \n"
+    text += "════════════════\n"
+    text += "Ⅰ.   [08.00 - 09.20]\n<b>" + str(first) + "</b>\n"
+    text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
+    text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
+    text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
     first = worksheet.acell('C43:F43').value
     second = worksheet.acell('C45:F45').value
     third = worksheet.acell('C47:F47').value
@@ -144,7 +149,8 @@ async def timetable(message: types.Message):
     text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
     text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
     text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-    await bot.send_message(chat_id=message.chat.id, text=text)
+    await bot.send_message(chat_id=message.chat.id, text="Відправив розклад у особисті повідомлення, щоб не засмічувати чат.", reply_markup=inline_delete)
+    await bot.send_message(chat_id=message.from_user.id, text=text, reply_markup=inline_delete)
 
 
 ## Расписание на понедельник
@@ -163,7 +169,6 @@ async def monday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
     else:
             first=worksheet.acell('C3:F3').value
             second=worksheet.acell('C5:F5').value
@@ -175,7 +180,8 @@ async def monday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
+    await bot.send_message(chat_id=message.chat.id, text=text, reply_markup=inline_delete)
+    await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
 
 
@@ -195,7 +201,6 @@ async def tuesday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
     else:
             first=worksheet.acell('C13:F13').value
             second=worksheet.acell('C15:F15').value
@@ -207,7 +212,8 @@ async def tuesday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
+    await bot.send_message(chat_id=message.chat.id, text=text, reply_markup=inline_delete)
+    await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
 
 
@@ -227,7 +233,6 @@ async def wednesday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
     else:
             first=worksheet.acell('C23:F23').value
             second=worksheet.acell('C25:F25').value
@@ -239,7 +244,8 @@ async def wednesday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
+    await bot.send_message(chat_id=message.chat.id, text=text, reply_markup=inline_delete)
+    await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
 
 ## Расписание на четверг
@@ -258,7 +264,6 @@ async def thursday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
     else:
             first=worksheet.acell('C33:F33').value
             second=worksheet.acell('C35:F35').value
@@ -270,7 +275,8 @@ async def thursday(message: types.Message):
             text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
             text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
             text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-            await bot.send_message(chat_id=message.chat.id, text=text)
+    await bot.send_message(chat_id=message.chat.id, text=text, reply_markup=inline_delete)
+    await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
 
 ## Расписание на пятницу
@@ -289,7 +295,6 @@ async def friday(message: types.Message):
         text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
         text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
         text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-        await bot.send_message(chat_id=message.chat.id, text=text)
     else:
         first = worksheet.acell('C43:F43').value
         second = worksheet.acell('C45:F45').value
@@ -301,7 +306,8 @@ async def friday(message: types.Message):
         text += "Ⅱ.  [09.35 - 10.55]\n<b>" + str(second) + "</b>\n"
         text += "Ⅲ. [11.10 - 12.30]\n<b>" + str(third) + "</b>\n"
         text += "Ⅳ. [12.45 - 14.05]\n<b>" + str(fourth) + "</b>\n"
-        await bot.send_message(chat_id=message.chat.id, text=text)
+    await bot.send_message(chat_id=message.chat.id, text=text, reply_markup=inline_delete)
+    await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
 
 
@@ -479,6 +485,9 @@ scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='08', minute='05',
 scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='40', args=('4'))
 scheduler.start()
 
+@dp.callback_query_handler(text="delete")
+async def delete(callback_query: types.CallbackQuery):
+    await callback_query.message.delete()
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=False)
