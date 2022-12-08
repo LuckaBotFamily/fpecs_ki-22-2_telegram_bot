@@ -1,17 +1,18 @@
+import wget
+
 from create_bot import bot, dp
 from datetime import datetime
 from aiogram import types, Dispatcher
+import requests
+from keyboards.inline import inline_delete
 
 
 async def delete(callback_query: types.CallbackQuery):
     await callback_query.message.delete()
 
-async def status(message: types.Message):
-    print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
-    status = "I am Alive!\n"
-    status += "Uptime: " + str((datetime.now() - startTime))
-    await bot.send_photo(chat_id=message.from_user.id, photo=InputFile('assets/timetable/1.jpg'))
+async def cat(message: types.Message):
+    await bot.send_photo(chat_id=message.chat.id, reply_markup=inline_delete, photo="https://cataas.com/cat/mlzdJ9v49C6n0bO3")
 
 def register_handlers_commands(dp: Dispatcher):
-    dp.register_message_handler(status, commands=['status'])
+    dp.register_message_handler(cat, commands=['random_cat'])
     dp.register_callback_query_handler(delete, text="delete")
