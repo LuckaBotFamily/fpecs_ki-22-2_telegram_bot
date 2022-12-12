@@ -36,21 +36,21 @@ def day_mess(day):
         if str(day) == "friday":
             text = "    ◀ П'ятниця ▶ 🔷 \n"
             x = 43
-        first = str(worksheet.acell('C' + str(x) + ':F' + str(x) + '').value)
-        second = str(worksheet.acell('C' + str(x + 2) + ':F' + str(x + 2) + '').value)
-        third = str(worksheet.acell('C' + str(x + 4) + ':F' + str(x + 4) + '').value)
-        fourth = str(worksheet.acell('C' + str(x + 6) + ':F' + str(x + 6) + '').value)
-        text += "════════════════\n"
-        if first != "None":
-            text += "Ⅰ.   [08.00 - 09.20] <b>" + first + "</b>\n"
-            pass
-        if second != "None":
-            text += "Ⅱ.  [09.35 - 10.55] <b>" + second + "</b>\n"
-            pass
-        if third != "None":
-            text += "Ⅲ. [11.10 - 12.30] <b>" + third + "</b>\n"
-            pass
-        if fourth != "None":
-            text += "Ⅳ. [12.45 - 14.05] <b>" + fourth + "</b>\n"
-            pass
+    first = str(worksheet.acell('C' + str(x) + ':F' + str(x) + '').value)
+    second = str(worksheet.acell('C' + str(x + 2) + ':F' + str(x + 2) + '').value)
+    third = str(worksheet.acell('C' + str(x + 4) + ':F' + str(x + 4) + '').value)
+    fourth = str(worksheet.acell('C' + str(x + 6) + ':F' + str(x + 6) + '').value)
+    text += "════════════════\n"
+    if first != "None":
+        text += "Ⅰ.   [08.00 - 09.20] <b>" + first + "</b>\n"
+        pass
+    if second != "None":
+        text += "Ⅱ.  [09.35 - 10.55] <b>" + second + "</b>\n"
+        pass
+    if third != "None":
+        text += "Ⅲ. [11.10 - 12.30] <b>" + third + "</b>\n"
+        pass
+    if fourth != "None":
+        text += "Ⅳ. [12.45 - 14.05] <b>" + fourth + "</b>\n"
+        pass
     return  text
