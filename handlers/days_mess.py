@@ -89,3 +89,39 @@ def getLine(day, color, line):
     if line == 4:
         text = str(worksheet.acell('C' + str(x + 6) + ':F' + str(x + 6) + '').value)
     return text
+
+def getFullDay(day):
+    z = 1
+    text = ""
+    if day == 1:
+        text += "\n\n    ◀ Понеділок ▶   \n"
+    if day == 2:
+        text += "\n\n    ◀ Вівторок ▶   \n"
+    if day == 3:
+        text += "\n\n    ◀ Середа ▶   \n"
+    if day == 4:
+        text += "\n\n     ◀ Четверг ▶   \n"
+    if day == 5:
+        text += "\n\n    ◀ П'ятниця ▶   \n"
+    text += "════════════════\n"
+    while (z < 5):
+        up = str(getLine(day=day, color=1, line=z))
+        down = str(getLine(day=day, color=0, line=z))
+        if up != "None" or down != "None":
+            if z == 1:
+                text += "Ⅰ.   [08.00 - 09.20]\n"
+            if z == 2:
+                text += "Ⅱ.  [09.35 - 10.55]\n"
+            if z == 3:
+                text += "Ⅲ. [11.10 - 12.30]\n"
+            if z == 4:
+                text += "Ⅳ. [12.45 - 14.05]\n"
+            if up == down:
+                text += up + "\n"
+            else:
+                if not ("None" in up):
+                    text += up + "\n"
+                if not ("None" in down):
+                    text += down + "\n"
+        z = z + 1
+    return text

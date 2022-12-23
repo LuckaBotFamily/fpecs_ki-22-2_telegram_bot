@@ -6,5 +6,5 @@ inline_delete = InlineKeyboardMarkup().add(InlineKeyboardButton('❌', callback_
 
 list = InlineKeyboardMarkup().add(
     InlineKeyboardButton('◀', callback_data='left'),
-    InlineKeyboardButton('🔶/🔷', callback_data='change'),
+    InlineKeyboardButton('❌', callback_data='delete'),
     InlineKeyboardButton('▶', callback_data='right'))
