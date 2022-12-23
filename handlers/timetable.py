@@ -24,13 +24,13 @@ async def prev_page(call: types.CallbackQuery):
     if "◀ Понеділок ▶" in call.message.text:
         x = 5
     if "◀ Вівторок ▶" in call.message.text:
-        x = 2
-    if "◀ Середа ▶" in call.message.text:
-        x = 3
-    if "◀ Четверг ▶" in call.message.text:
-        x = 4
-    if "◀ П'ятниця ▶" in call.message.text:
         x = 1
+    if "◀ Середа ▶" in call.message.text:
+        x = 2
+    if "◀ Четверг ▶" in call.message.text:
+        x = 3
+    if "◀ П'ятниця ▶" in call.message.text:
+        x = 4
     await call.message.edit_text(text=days_mess.getFullDay(x), reply_markup=list)
 
 
