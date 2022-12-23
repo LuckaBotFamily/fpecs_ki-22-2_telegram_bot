@@ -54,3 +54,38 @@ def day_mess(day):
         text += "Ⅳ. [12.45 - 14.05] <b>" + fourth + "</b>\n"
         pass
     return  text
+
+def getLine(day, color, line):
+    if color == 0:
+        "🔶 - четная"
+        if day == 1:
+            x = 4
+        if day == 2:
+            x = 14
+        if day == 3:
+            x = 24
+        if day == 4:
+            x = 34
+        if day == 5:
+            x = 44
+    else:
+        "🔷 - нечетная"
+        if day == 1:
+            x = 3
+        if day == 2:
+            x = 13
+        if day == 3:
+            x = 23
+        if day == 4:
+            x = 33
+        if day == 5:
+            x = 43
+    if line == 1:
+        text = str(worksheet.acell('C' + str(x) + ':F' + str(x) + '').value)
+    if line == 2:
+        text = str(worksheet.acell('C' + str(x + 2) + ':F' + str(x + 2) + '').value)
+    if line == 3:
+        text = str(worksheet.acell('C' + str(x + 4) + ':F' + str(x + 4) + '').value)
+    if line == 4:
+        text = str(worksheet.acell('C' + str(x + 6) + ':F' + str(x + 6) + '').value)
+    return text
