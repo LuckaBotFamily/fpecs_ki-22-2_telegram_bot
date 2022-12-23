@@ -3,8 +3,8 @@ import gspread
 worksheet = gspread.service_account(filename='level-slate-280111-4930953f5702.json').open_by_url('https://docs.google.com/spreadsheets/d/1ZLodGxsGLLxDdzVbpING0jcJImsyOAW1S9y8NcAs2_w/edit#gid=2127480627').get_worksheet(0)
 
 
-def day_mess(day):
-    if int(datetime.date(datetime.today()).strftime("%V")) % 2 == 0:
+def day_mess(day, week):
+    if int(week) % 2 == 0:
         if str(day) == "monday":
             text = "    ◀ Понеділок ▶ 🔶  \n"
             x = 4

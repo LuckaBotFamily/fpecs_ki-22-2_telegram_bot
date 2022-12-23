@@ -36,35 +36,35 @@ async def notify(pars):
     week = datetime.date(datetime.today()).strftime("%V")
     for user in worksheet.col_values(2):
         if int(week) % 2 == 0:
-            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=pars))
+            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=int(pars)))
         else:
-            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=pars))
-        message = await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
-        await bot.pin_chat_message(chat_id=user, message_id=message.message_id)
+            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=int(pars)))
+        if line != "None":
+            message = await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
+            await bot.pin_chat_message(chat_id=user, message_id=message.message_id)
 
 async def newday():
     global newday_mess
     if datetime.weekday(datetime.today()) == 0:
-        text = days_mess.day_mess("monday")
+        text = days_mess.day_mess("monday",  week=int(datetime.date(datetime.today()).strftime("%V")))
     if datetime.weekday(datetime.today()) == 1:
-        text = days_mess.day_mess("tuesday")
+        text = days_mess.day_mess("tuesday",  week=int(datetime.date(datetime.today()).strftime("%V")))
     if datetime.weekday(datetime.today()) == 2:
-        text = days_mess.day_mess("wednesday")
+        text = days_mess.day_mess("wednesday",  week=int(datetime.date(datetime.today()).strftime("%V")))
     if datetime.weekday(datetime.today()) == 3:
-        text = days_mess.day_mess("thursday")
+        text = days_mess.day_mess("thursday",  week=int(datetime.date(datetime.today()).strftime("%V")))
     if datetime.weekday(datetime.today()) == 4:
-        text = days_mess.day_mess("friday")
-    for user in worksheet.col_values(2):
-        message = await bot.send_message(chat_id=user, text=text)
-        await bot.pin_chat_message(chat_id=user, message_id=message.message_id)
+        text = days_mess.day_mess("friday",  week=int(datetime.date(datetime.today()).strftime("%V")))
+    message = await bot.send_message(chat_id=-1001709052184, text=text)
+    #await bot.pin_chat_message(chat_id=-1001709052184, message_id=message.message_id)
 
 
 scheduler = AsyncIOScheduler()
-scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='7', minute='50')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args=1)
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args=2)
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args=3)
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args=4)
+scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='7', minute='30')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args='1')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args='2')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args='3')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args='4')
 scheduler.start()
 
 def register_handlers_notify(dp: Dispatcher):

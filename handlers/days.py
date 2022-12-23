@@ -12,26 +12,26 @@ async def forward_mess(message, text):
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 
 async def monday(message: types.Message):
-    text = days_mess.day_mess("monday")
+    text = days_mess.day_mess("monday", datetime.date(datetime.today()).strftime("%V"))
     await forward_mess(message, text)
 
 async def tuesday(message: types.Message):
-    text = days_mess.day_mess("tuesday")
+    text = days_mess.day_mess("tuesday", datetime.date(datetime.today()).strftime("%V"))
     await forward_mess(message, text)
 
 
 async def wednesday(message: types.Message):
-    text = days_mess.day_mess("wednesday")
+    text = days_mess.day_mess("wednesday", datetime.date(datetime.today()).strftime("%V"))
     await forward_mess(message, text)
 
 
 async def thursday(message: types.Message):
-    text = days_mess.day_mess("thursday")
+    text = days_mess.day_mess("thursday", datetime.date(datetime.today()).strftime("%V"))
     await forward_mess(message, text)
 
 
 async def friday(message: types.Message):
-    text = days_mess.day_mess("friday")
+    text = days_mess.day_mess("friday", datetime.date(datetime.today()).strftime("%V"))
     await forward_mess(message, text)
 
 
@@ -52,8 +52,9 @@ async def today(message: types.Message):
 ## Расписание на завтра
 async def tomorrow(message: types.Message):
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
-    if datetime.weekday(datetime.today()) == 6:
-        await monday(message)
+    if datetime.weekday(datetime.today()) > 3:
+        text = days_mess.day_mess("monday", week=int(datetime.date(datetime.today()).strftime("%V"))+1)
+        await forward_mess(message, text)
     if datetime.weekday(datetime.today()) == 0:
         await tuesday(message)
     if datetime.weekday(datetime.today()) == 1:
