@@ -36,11 +36,12 @@ async def notify(pars):
     week = datetime.date(datetime.today()).strftime("%V")
     for user in worksheet.col_values(2):
         if int(week) % 2 == 0:
-            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=pars))
+            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=int(pars)))
         else:
-            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=pars))
-        message = await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
-        await bot.pin_chat_message(chat_id=user, message_id=message.message_id)
+            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=int(pars)))
+        if line != "None":
+            message = await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
+            await bot.pin_chat_message(chat_id=user, message_id=message.message_id)
 
 async def newday():
     global newday_mess
@@ -61,10 +62,10 @@ async def newday():
 
 scheduler = AsyncIOScheduler()
 scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='7', minute='50')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args=1)
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args=2)
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args=3)
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args=4)
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args='1')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args='2')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args='3')
+scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args='4')
 scheduler.start()
 
 def register_handlers_notify(dp: Dispatcher):
