@@ -40,8 +40,7 @@ async def notify(pars):
         else:
             line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=int(pars)))
         if line != "None":
-            message = await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
-            await bot.pin_chat_message(chat_id=user, message_id=message.message_id)
+            await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
 
 async def newday():
     global newday_mess
@@ -56,7 +55,7 @@ async def newday():
     if datetime.weekday(datetime.today()) == 4:
         text = days_mess.day_mess("friday",  week=int(datetime.date(datetime.today()).strftime("%V")))
     message = await bot.send_message(chat_id=-1001709052184, text=text)
-    #await bot.pin_chat_message(chat_id=-1001709052184, message_id=message.message_id)
+    await bot.pin_chat_message(chat_id=-1001709052184, message_id=message.message_id)
 
 
 scheduler = AsyncIOScheduler()
