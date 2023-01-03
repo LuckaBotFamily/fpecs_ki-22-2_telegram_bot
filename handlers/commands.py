@@ -1,13 +1,11 @@
-import wget
-
 from create_bot import bot, dp
-from datetime import datetime
+import logger
 from aiogram import types, Dispatcher
-import requests
 from keyboards.inline import inline_delete
 
 
 async def delete(callback_query: types.CallbackQuery):
+    await logger.logger_cq(command="delete", call=callback_query)
     await callback_query.message.delete()
 
 async def cat(message: types.Message):

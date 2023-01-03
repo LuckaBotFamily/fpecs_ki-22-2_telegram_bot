@@ -1,6 +1,7 @@
 from aiogram import types, Dispatcher
 import gspread
 from . import days_mess
+import logger
 from create_bot import dp, bot
 from keyboards.inline import inline_delete, list
 worksheet = gspread.service_account(filename='level-slate-280111-4930953f5702.json').open_by_url('https://docs.google.com/spreadsheets/d/1ZLodGxsGLLxDdzVbpING0jcJImsyOAW1S9y8NcAs2_w/edit#gid=2127480627').get_worksheet(0)
@@ -8,6 +9,7 @@ worksheet = gspread.service_account(filename='level-slate-280111-4930953f5702.js
 
 ## Расписание на всю неделю
 async def timetable(message: types.Message):
+    await logger.logger_mess(message)
     print(message.from_user.full_name + ' || ' + str(message.from_user.id) + ' || ' + message.text)
     if "full" in message.get_args():
         y = 1
@@ -31,6 +33,7 @@ async def prev_page(call: types.CallbackQuery):
         x = 3
     if "◀ П'ятниця ▶" in call.message.text:
         x = 4
+    await logger.logger_cq(command="left", call=call)
     await call.message.edit_text(text=days_mess.getFullDay(x), reply_markup=list)
 
 
@@ -46,6 +49,7 @@ async def next_page(call: types.CallbackQuery):
         x = 5
     if "◀ П'ятниця ▶" in call.message.text:
         x = 1
+    await logger.logger_cq(command="right", call=call)
     await call.message.edit_text(text=days_mess.getFullDay(x), reply_markup=list)
 
 

@@ -2,12 +2,14 @@ from aiogram import types, Dispatcher
 from create_bot import dp, bot
 from datetime import datetime
 import gspread
+import logger
 from keyboards.inline import inline_delete
 from . import days_mess
 
 worksheet = gspread.service_account(filename='level-slate-280111-4930953f5702.json').open_by_url('https://docs.google.com/spreadsheets/d/1ZLodGxsGLLxDdzVbpING0jcJImsyOAW1S9y8NcAs2_w/edit#gid=2127480627').get_worksheet(0)
 
 async def forward_mess(message, text):
+    await logger.logger_mess(message)
     await bot.send_message(chat_id=message.chat.id, text=text, reply_markup=inline_delete)
     await bot.delete_message(chat_id=message.chat.id, message_id=message.message_id)
 

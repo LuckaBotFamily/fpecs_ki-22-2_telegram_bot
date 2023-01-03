@@ -5,6 +5,7 @@ from aiogram import types, Dispatcher
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from . import days_mess, days
 from create_bot import bot, dp
+import logger
 
 worksheet = gspread.service_account(filename='level-slate-280111-4930953f5702.json').open_by_url('https://docs.google.com/spreadsheets/d/1ZLodGxsGLLxDdzVbpING0jcJImsyOAW1S9y8NcAs2_w/edit#gid=2127480627').get_worksheet(2)
 
@@ -30,10 +31,12 @@ async def notify_togl(message: types.Message):
         text = 'Повідомлення успішно вимкнено'
     else:
         text = 'Будь ласка, введіть аргумент "on" щоб увімкнути повідомлення, або "off" щоб їх вимкнути'
+    await logger.logger_mess(message)
     await bot.send_message(chat_id=message.chat.id, text=text)
 
 async def notify(pars):
     week = datetime.date(datetime.today()).strftime("%V")
+    users = ""
     for user in worksheet.col_values(2):
         if int(week) % 2 == 0:
             line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=int(pars)))
@@ -41,6 +44,8 @@ async def notify(pars):
             line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=int(pars)))
         if line != "None":
             await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
+            users += user + "\n"
+        await logger.logger_notify(users)
 
 async def newday():
     global newday_mess
@@ -56,6 +61,7 @@ async def newday():
         text = days_mess.day_mess("friday",  week=int(datetime.date(datetime.today()).strftime("%V")))
     message = await bot.send_message(chat_id=-1001709052184, text=text)
     await bot.pin_chat_message(chat_id=-1001709052184, message_id=message.message_id)
+    await logger.logger_newday()
 
 
 scheduler = AsyncIOScheduler()
