@@ -1,7 +1,7 @@
 from aiogram.utils import executor
 from create_bot import dp
 
-from handlers import commands, days, notify, timetable
+from timetable import commands, days, notify, timetable
 from games import main
 
 commands.register_handlers_commands(dp)
