@@ -33,9 +33,9 @@ async def acceptVoice(callback_query: types.CallbackQuery):
         lang = 'uk-UA'
     elif callback_query.data == 'acceptVoice_Ru':
         lang = 'ru-RU'
-    with open('voice.mp3', 'wb') as f:
+    with open('voice.ogg', 'wb') as f:
         f.write(file.content)
-    data, samplerate = sf.read('voice.mp3')
+    data, samplerate = sf.read('voice.ogg')
     sf.write('voice.wav', data, samplerate)
     r = sr.Recognizer()
     with sr.AudioFile('voice.wav') as source:
