@@ -9,8 +9,11 @@ async def sex(message: types.Message):
     try:
         text = f"Ви успішно зайнялися сексом з <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>"
     except:
-        usr = await bot.get_chat_member(chat_id=message.chat.id, user_id=usrsSex[random.randint(0, 10)])
-        text = f"Ви успішно зайнялися сексом з <a href='tg://user?id={usr.user.id}'>{usr.user.full_name}</a>"
+        if message.get_args().split(' ')[0] == '':
+            usr = await bot.get_chat_member(chat_id=message.chat.id, user_id=usrsSex[random.randint(0, 10)])
+            text = f"Ви успішно зайнялися сексом з <a href='tg://user?id={usr.user.id}'>{usr.user.full_name}</a>"
+        else:
+            text = f"Ви успішно зайнялися сексом з{message.text[4:]}"
     await bot.send_message(chat_id=message.chat.id, reply_to_message_id=message.message_id, text=text)
     await logger.logger_mess(message)
 
