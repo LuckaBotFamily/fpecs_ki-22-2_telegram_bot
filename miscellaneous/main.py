@@ -1,4 +1,4 @@
-from . import textAndVoice, fun
+from . import textAndVoice, fun, chatgpt
 from aiogram import types, Dispatcher
 
 def register_handlers_misc(dp: Dispatcher):
@@ -8,6 +8,6 @@ def register_handlers_misc(dp: Dispatcher):
     dp.register_message_handler(fun.sex, commands=['sex'])
     dp.register_message_handler(fun.kuni, commands=['kuni'])
     dp.register_message_handler(fun.blowjob, commands=['blowjob'])
-
+    dp.register_message_handler(chatgpt.chatGptMess, content_types=['text'])
     dp.register_message_handler(fun.getSexUser, commands=['sex_user'])
 #    dp.register_message_handler(fun.info, commands=['info'])
