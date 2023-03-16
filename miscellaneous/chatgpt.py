@@ -9,6 +9,14 @@ from create_bot import bot, dp
 openai.api_key = config.OPENAI
 messages = {}
 
+
+
+@dp.message_handler(commands=['newtopic'])
+async def new_topic_cmd(message: types.Message):
+        username = message.from_user.username
+        messages[username] = []
+        await message.reply('Starting a new topic! * * * \n\nНачинаем новую тему! * * *', parse_mode='Markdown')
+
 async def chatGptMess(message: types.Message):
     if "ОТКИСОН" in message.text.split()[0].upper():
         user_message = message.text
