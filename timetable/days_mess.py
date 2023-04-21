@@ -15,7 +15,7 @@ def day_mess(day, week):
             text = "    ◀ Середа ▶ 🔶  \n"
             x = 24
         if str(day) == "thursday":
-            text = "    ◀ Четверг ▶ 🔶  \n"
+            text = "    ◀ Четвер ▶ 🔶  \n"
             x = 34
         if str(day) == "friday":
             text = "    ◀ П'ятниця ▶ 🔶  \n"
@@ -31,7 +31,7 @@ def day_mess(day, week):
             text = "    ◀ Середа ▶ 🔷  \n"
             x = 23
         if str(day) == "thursday":
-            text = "    ◀ Четверг ▶ 🔷  \n"
+            text = "    ◀ Четвер ▶ 🔷  \n"
             x = 33
         if str(day) == "friday":
             text = "    ◀ П'ятниця ▶ 🔷 \n"
@@ -100,7 +100,7 @@ def getFullDay(day):
     if day == 3:
         text += "\n\n    ◀ Середа ▶   \n"
     if day == 4:
-        text += "\n\n     ◀ Четверг ▶   \n"
+        text += "\n\n     ◀ Четвер ▶   \n"
     if day == 5:
         text += "\n\n    ◀ П'ятниця ▶   \n"
     text += "════════════════\n"
