@@ -4,15 +4,15 @@ from create_bot import bot, dp
 import logger, config
 from aiogram import types, Dispatcher
 # 29.01.23 TODO: Переделать на нормальную базу, а то щас ряльно кринж
-usrsSex = ['586715737', '456391767', '1211580868', '576092040', '714713631', '786290626', '750915341', '999694590', '467991052', '1414646966', '602838745']
-usrsKuni = ['1414646966', '1211580868']
+usrsSex = ['586715737', '456391767', '1211580868', '576092040', '714713631', '786290626', '750915341', '999694590', '467991052', '1414646966', '602838745', '593907199']
+usrsKuni = ['1414646966', '1211580868', '593907199']
 usrsBlowjob = ['586715737', '456391767', '576092040', '714713631', '786290626', '750915341', '999694590', '467991052', '602838745']
 async def sex(message: types.Message):
     try:
         text = f"Ви успішно зайнялися сексом з <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>"
     except:
         if message.get_args().split(' ')[0] == '':
-            usr = await bot.get_chat_member(chat_id=message.chat.id, user_id=usrsSex[random.randint(0, 10)])
+            usr = await bot.get_chat_member(chat_id=message.chat.id, user_id=usrsSex[random.randint(0, 12)])
             text = f"Ви успішно зайнялися сексом з <a href='tg://user?id={usr.user.id}'>{usr.user.full_name}</a>"
         else:
             text = f"Ви успішно зайнялися сексом з {message.text[4:]}"
@@ -27,7 +27,7 @@ async def kuni(message: types.Message):
             text = f"Куди ти зібравься пхати свого носа ?"
     except:
         if message.get_args().split(' ')[0] == '':
-            usr = await bot.get_chat_member(chat_id=message.chat.id, user_id=usrsKuni[random.randint(0, 1)])
+            usr = await bot.get_chat_member(chat_id=message.chat.id, user_id=usrsKuni[random.randint(0, 2)])
             text = f"Ви успішно помочили носик об <a href='tg://user?id={usr.user.id}'>{usr.user.full_name}</a>"
         else:
             text = f"Ви успішно помочили носик об {message.text[5:]}"
