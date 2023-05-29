@@ -64,13 +64,13 @@ async def newday():
     await logger.logger_newday()
 
 
-scheduler = AsyncIOScheduler()
-scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='7', minute='30')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args='1')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args='2')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args='3')
-scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args='4')
-scheduler.start()
+#scheduler = AsyncIOScheduler()
+#scheduler.add_job(newday, 'cron', day_of_week='mon-fri', hour='7', minute='30')
+#scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='07', minute='55', args='1')
+#scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='09', minute='30', args='2')
+#scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='11', minute='05', args='3')
+#scheduler.add_job(notify, 'cron', day_of_week='mon-fri', hour='12', minute='40', args='4')
+#scheduler.start()
 
 def register_handlers_notify(dp: Dispatcher):
     dp.register_message_handler(notify_togl, commands=['notify'])
