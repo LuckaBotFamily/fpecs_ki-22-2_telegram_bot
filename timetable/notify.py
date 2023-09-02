@@ -39,9 +39,9 @@ async def notify(pars):
     users = ""
     for user in worksheet.col_values(2):
         if int(week) % 2 == 0:
-            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=int(pars)))
-        else:
             line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=1, line=int(pars)))
+        else:
+            line = str(days_mess.getLine(day=datetime.isoweekday(datetime.today()), color=0, line=int(pars)))
         if line != "None":
             await bot.send_message(chat_id=user, text=f"Через 5 хвилин розпочнеться пара\n<b>{line}</b>")
             users += user + "\n"

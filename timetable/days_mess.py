@@ -4,7 +4,7 @@ worksheet = gspread.service_account(filename='level-slate-280111-4930953f5702.js
 
 
 def day_mess(day, week):
-    if int(week) % 2 == 0:
+    if int(week) % 2 != 0:
         if str(day) == "monday":
             text = "    ◀ Понеділок ▶ 🔶  \n"
             x = 4
